@@ -1,0 +1,9 @@
+# This command installs the necessary dependencies for the application
+FROM alpine:3.7
+
+RUN apk add --no-cache mysql-client bash curl jq python py-pip git && \
+    pip install awscli
+WORKDIR /app
+COPY ./script.sh app/script.sh
+
+CMD ["/bin/bash", "/script.sh"]
